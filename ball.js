@@ -67,39 +67,51 @@ class Ball {
       return distance <= radiusSum;
     }
 
+    playCollisonSound(){
+    }
+
+
+    bounce(ball){
+      // Update the velocities of colliding balls for bounce effect
+      const dx = this.x - ball.x;
+      const dy = this.y - ball.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const angle = Math.atan2(dy, dx);
+      const sin = Math.sin(angle);
+      const cos = Math.cos(angle);
+
+      // Swap velocities for bounce effect
+      const thisVx = this.vx * cos + this.vy * sin;
+      const thisVy = this.vy * cos - this.vx * sin;
+      const ballVx = ball.vx * cos + ball.vy * sin;
+      const ballVy = ball.vy * cos - ball.vx * sin;
+
+      // Update velocities of colliding balls
+      this.vx = thisVx;
+      this.vy = thisVy;
+      ball.vx = ballVx;
+      ball.vy = ballVy;
+
+      // Add a small separation between colliding balls to prevent sticking
+      const separation = (this.width() / 2 + ball.width() / 2) - distance;
+      const separationX = separation * cos * 0.7;
+      const separationY = separation * sin * 0.7;
+      this.x += separationX;
+      this.y += separationY;
+      ball.x -= separationX;
+      ball.y -= separationY;
+
+      // Play collision sound
+    }
+
+    
     checkCollisionWithBalls(balls) {
       balls.forEach(ball => {
         if (ball !== this && this.isCollidingWith(ball)) {
           // Perform collision handling logic here
-          console.log('Collision detected!');
-          // Update the velocities of colliding balls for bounce effect
-          const dx = this.x - ball.x;
-          const dy = this.y - ball.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          const angle = Math.atan2(dy, dx);
-          const sin = Math.sin(angle);
-          const cos = Math.cos(angle);
-    
-          // Swap velocities for bounce effect
-          const thisVx = this.vx * cos + this.vy * sin;
-          const thisVy = this.vy * cos - this.vx * sin;
-          const ballVx = ball.vx * cos + ball.vy * sin;
-          const ballVy = ball.vy * cos - ball.vx * sin;
-    
-          // Update velocities of colliding balls
-          this.vx = thisVx;
-          this.vy = thisVy;
-          ball.vx = ballVx;
-          ball.vy = ballVy;
-    
-          // Add a small separation between colliding balls to prevent sticking
-          const separation = (this.width() / 2 + ball.width() / 2) - distance;
-          const separationX = separation * cos * 0.8;
-          const separationY = separation * sin * 0.8;
-          this.x += separationX;
-          this.y += separationY;
-          ball.x -= separationX;
-          ball.y -= separationY;
+          // console.log('Collision detected!');
+          this.bounce(ball);
+          this.playCollisonSound();
         }
       });
     }
@@ -107,7 +119,6 @@ class Ball {
 
     test(){
       // run test for 10 seconds
-
         console.log('dx', this.x);
         console.log('dy', this.y);
         console.log('clientWidth', this.width());
