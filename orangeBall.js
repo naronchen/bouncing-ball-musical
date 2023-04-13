@@ -1,14 +1,14 @@
 import Ball from './ball.js';
 
-class BlueBall extends Ball {
+class OrangeBall extends Ball {
     constructor(x, y, vx, vy) {
-        const color = 'skyblue'; 
+        const color = 'orange';
         super(x, y, vx, vy, color);
     
         this.core = new Tone.PolySynth().toMaster();
         this.patch = {
-            frequency: "C4",
-            detune: 12,
+            frequency: "G4",
+            detune: 10,
             oscillator: {
                 type: "triangle"
             },
@@ -18,7 +18,7 @@ class BlueBall extends Ball {
                 rolloff: -24
             },
             envelope: {
-                attack:  0.6,
+                attack:  0.8,
                 decay:   0.1,
                 release: 1.2
             },
@@ -26,7 +26,7 @@ class BlueBall extends Ball {
                 attack:  0.6,
                 decay:   0.1,
                 release: 1.2,
-                baseFrequency: 520,
+                baseFrequency: 400,
                 octaves: 2
             }
         }
@@ -37,9 +37,9 @@ class BlueBall extends Ball {
 
     playCollisonSound() {
         // Logic to play collision sound based on information in BlueBall class
-        console.log('Playing collision sound for BlueBall');
+        console.log('Playing collision sound for Orange Ball');
         // ...
-        this.core.triggerAttackRelease(["F4", "A4","C3"], "8n");
+        this.core.triggerAttackRelease(["C5", "E5","G4"], "8n");
     }
 
     checkCollisionWithBalls(balls) {
@@ -63,4 +63,4 @@ class BlueBall extends Ball {
 
 }
 
-export default BlueBall;
+export default OrangeBall;
