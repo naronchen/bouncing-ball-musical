@@ -7,9 +7,9 @@ class OrangeBall extends Ball {
         super(x, y, vx, vy, color);
         
         this.vibrato = new Tone.Vibrato({
-            depth: 0.1,
-            frequency: 2,
-            decay: 4
+            depth: 0.5,
+            frequency: 8,
+            decay: 1.5
           }).toDestination();
         this.core = new Tone.PolySynth().toMaster();
         this.patch = {
