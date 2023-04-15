@@ -4,7 +4,12 @@ class BlueBall extends Ball {
     constructor(x, y, vx, vy) {
         const color = 'skyblue'; 
         super(x, y, vx, vy, color);
-    
+        
+        this.vibrato = new Tone.Vibrato({
+            depth: 0.1,
+            frequency: 2,
+            decay: 4
+          }).toDestination();
         this.core = new Tone.PolySynth().toMaster();
         this.patch = {
             frequency: "C4",
@@ -38,6 +43,9 @@ class BlueBall extends Ball {
     playCollisonSound() {
         // Logic to play collision sound based on information in BlueBall class
         console.log('Playing collision sound for BlueBall');
+        if(this.vibrato_check){
+            this.core.connect(this.vibrato);
+        }
         // ...
         this.core.triggerAttackRelease(["F4", "A4","C3"], "8n");
     }
