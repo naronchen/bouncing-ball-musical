@@ -121,3 +121,25 @@ closeAudioContextButton.addEventListener('click', () => {
   }
   );
 });
+
+// create a checkbox element
+const checkbox = document.createElement('input');
+checkbox.type = 'checkbox';
+const label = document.createElement('label');
+label.textContent = 'Vibrato On/Off';
+const container = document.querySelector('#myCheckboxContainer');
+container.appendChild(checkbox);
+container.appendChild(label);
+
+checkbox.addEventListener('click', () => {
+  orangeballs.forEach(ball => {
+    ball.set_vibrato(checkbox.checked)
+  }),
+  blueballs.forEach(ball => {
+    ball.set_vibrato(checkbox.checked)
+  }),
+  yellowballs.forEach(ball => {
+    ball.set_vibrato(checkbox.checked)
+  }
+  );
+});
