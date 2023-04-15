@@ -47,7 +47,7 @@ class BlueBall extends Ball {
             this.core.connect(this.vibrato);
         }
         // ...
-        this.core.triggerAttackRelease(["F4", "A4","C3"], "8n");
+        this.core.triggerAttackRelease(["F4"], "12n");
     }
 
     checkCollisionWithBalls(balls) {

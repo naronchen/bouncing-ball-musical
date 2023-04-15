@@ -2,8 +2,8 @@ class Ball {
     constructor(x, y,vx, vy, color) {
         this.x = x;
         this.y = y;
-        this.vx = vx;
-        this.vy = vy;
+        this.vx = vx/4;
+        this.vy = vy/4;
         this.color = color;
         this.ballElement = document.createElement('div');
         this.vibrato_check = true;

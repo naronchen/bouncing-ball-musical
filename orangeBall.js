@@ -48,7 +48,7 @@ class OrangeBall extends Ball {
             this.core.connect(this.vibrato);
         }
         // ...
-        this.core.triggerAttackRelease(["C5", "E5","G4"], "8n");
+        this.core.triggerAttackRelease(["C5", "E5"], "12n");
     }
 
     checkCollisionWithBalls(balls) {
