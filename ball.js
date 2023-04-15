@@ -6,6 +6,7 @@ class Ball {
         this.vy = vy;
         this.color = color;
         this.ballElement = document.createElement('div');
+        this.vibrato_check = true;
         
         this.ballElement.style.width = '30px';
         this.ballElement.style.height = '30px';
