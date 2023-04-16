@@ -6,9 +6,11 @@ class BlueBall extends Ball {
         super(x, y, vx, vy, color, pool);
 
         // Set up synth with low-pass filter and longer release time
-        this.core = new Tone.PolySynth({
+        this.core = new Tone.PolySynth().toMaster();
+        this.patch = {
+
             oscillator: {
-                type: "sawtooth"
+                type: "triangle"
             },
             envelope: {
                 attack: 0.2,
@@ -30,17 +32,25 @@ class BlueBall extends Ball {
                 octaves: 1,
                 exponent: 2
             }
-        }).toDestination();
+        };
+        this.core.set(this.patch);
     }
 
     playCollisonSound() {
         // Play a random note from the note pool with reduced velocity
-        this.core.triggerAttackRelease(["C4", "E4", "G4"], "8n", undefined, 0.3);
 
         // Add vibrato effect if enabled
         if (this.vibrato_check) {
             this.core.connect(this.vibrato);
         }
+        else{
+            this.core = new Tone.PolySynth().toMaster();
+            this.core.set(this.patch);
+        }
+
+        this.core.triggerAttackRelease(["C4"], "8n");
+
+
     }
 
     checkCollisionWithBalls() {

@@ -42,6 +42,10 @@ class OrangeBall extends Ball {
         if(this.vibrato_check){
             this.core.connect(this.vibrato);
         }
+        else{
+            this.core = new Tone.PolySynth().toMaster();
+            this.core.set(this.patch);
+        }
         // ...
         this.core.triggerAttackRelease(["C5", "E5"], "12n");
     }

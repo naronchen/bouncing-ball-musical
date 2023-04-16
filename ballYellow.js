@@ -46,8 +46,13 @@ class YellowBall extends Ball {
         if (this.vibrato_check) {
           this.core.connect(this.vibrato);
         }
-      }
-      
+        else{
+            this.core = new Tone.PolySynth().toMaster();
+            this.core.set(this.patch);
+        }
+        // ...
+        this.core.triggerAttackRelease(["G4", "B4"], "10n");
+    }
 
     checkCollisionWithBalls(balls) {
         this.pool.forEach(ball => {
