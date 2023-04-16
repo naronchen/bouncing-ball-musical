@@ -2,15 +2,10 @@
 import Ball from './ball.js';
 
 class OrangeBall extends Ball {
-    constructor(x, y, vx, vy) {
+    constructor(x, y, vx, vy, pool) {
         const color = 'orange';
-        super(x, y, vx, vy, color);
+        super(x, y, vx, vy, color, pool)
         
-        this.vibrato = new Tone.Vibrato({
-            depth: 0.1,
-            frequency: 2,
-            decay: 4
-          }).toDestination();
         this.core = new Tone.PolySynth().toMaster();
         this.patch = {
             frequency: "G4",
@@ -51,25 +46,16 @@ class OrangeBall extends Ball {
         this.core.triggerAttackRelease(["C5", "E5"], "12n");
     }
 
-    checkCollisionWithBalls(balls) {
-        balls.forEach(ball => {
+    checkCollisionWithBalls() {
+        this.pool.forEach(ball => {
           if (ball !== this && this.isCollidingWith(ball)) {
             // Perform collision handling logic here
             // console.log('rewrote!');
             this.bounce(ball);
-
             this.playCollisonSound();
           }
         });
       }
-
-    startAudioContext() {
-        Tone.start();
-    }
-    
-    closeAudioContext() {
-        Tone.context.close();
-    }
 
 }
 

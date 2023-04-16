@@ -1,12 +1,12 @@
 class Ball {
-    constructor(x, y,vx, vy, color) {
+    constructor(x, y,vx, vy, color, pool) {
         this.x = x;
         this.y = y;
-        this.vx = vx/4;
-        this.vy = vy/4;
+        this.vx = vx;
+        this.vy = vy;
         this.color = color;
         this.ballElement = document.createElement('div');
-        this.vibrato_check = true;
+        this.vibrato_check = false;
         
         this.ballElement.style.width = '30px';
         this.ballElement.style.height = '30px';
@@ -15,15 +15,39 @@ class Ball {
         this.ballElement.style.position = 'absolute';
         this.ballElement.style.top = `${y}px`;
         this.ballElement.style.left = `${x}px`;
-    }
+        
+        this.pool = pool
 
+        this.vibrato = new Tone.Vibrato({
+          depth: 1,
+          frequency: 8,
+          decay: 1
+        }).toDestination();
+    }
+    
     color(){
         return this.color;
     }
     width(){
         return parseInt(this.ballElement.style.width, 10);
     }
-    updateBallPosition(balls) {
+
+    add_to_pool(ball){
+      this.pool.push(ball);
+    }
+
+    stopAnimation() {
+      console.log("hello")
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+
+
+    set_vibrato(check){
+      this.vibrato_check = check;
+    }
+
+    updateBallPosition() {
       // Update the ball's position
       this.x += this.vx;
       this.y += this.vy;
@@ -43,19 +67,19 @@ class Ball {
       this.ballElement.style.left = `${this.x}px`;
   
       // Check for collision with other balls
-      this.checkCollisionWithBalls(balls);
+      this.checkCollisionWithBalls();
   }
     
-    startAnimation(balls) {
-        // Append the ball element to the DOM
-        document.body.appendChild(this.ballElement);
-    
-        const animateBall = () => {
-          this.updateBallPosition(balls);
-          requestAnimationFrame(animateBall);
-        };
-        animateBall();
-      }
+    startAnimation() {
+      // Append the ball element to the DOM
+      document.body.appendChild(this.ballElement);
+
+      const animateBall = () => {
+          this.updateBallPosition();
+          this.animationFrameId = requestAnimationFrame(animateBall);
+      };
+      animateBall();
+  }
 
     isCollidingWith(otherBall) {
       const dx = this.x - otherBall.x;
@@ -95,8 +119,8 @@ class Ball {
 
       // Add a small separation between colliding balls to prevent sticking
       const separation = (this.width() / 2 + ball.width() / 2) - distance;
-      const separationX = separation * cos * 0.7;
-      const separationY = separation * sin * 0.7;
+      const separationX = separation * cos * 0.9;
+      const separationY = separation * sin * 0.9;
       this.x += separationX;
       this.y += separationY;
       ball.x -= separationX;
@@ -106,8 +130,8 @@ class Ball {
     }
 
     
-    checkCollisionWithBalls(balls) {
-      balls.forEach(ball => {
+    checkCollisionWithBalls() {
+      this.pool.forEach(ball => {
         if (ball !== this && this.isCollidingWith(ball)) {
           // Perform collision handling logic here
           // console.log('Collision detected!');
@@ -124,8 +148,6 @@ class Ball {
         console.log('dy', this.y);
         console.log('clientWidth', this.width());
     }
-
-
 
 
   

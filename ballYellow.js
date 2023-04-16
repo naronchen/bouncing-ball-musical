@@ -1,15 +1,10 @@
 import Ball from './ball.js';
 
 class YellowBall extends Ball {
-    constructor(x, y, vx, vy) {
+    constructor(x, y, vx, vy, pool) {
         const color = 'lightgreen'; // I'm color blind
-        super(x, y, vx, vy, color);
-        
-        this.vibrato = new Tone.Vibrato({
-            depth: 0.1,
-            frequency: 2,
-            decay: 4
-          }).toDestination();
+        super(x, y, vx, vy, color, pool);
+
         this.core = new Tone.PolySynth().toMaster();
         this.patch = {
             frequency: "C4",
@@ -36,22 +31,26 @@ class YellowBall extends Ball {
             }
         }
         this.core.set(this.patch);
-        
     }
     
 
     playCollisonSound() {
         // Logic to play collision sound based on information in BlueBall class
-        console.log('Playing collision sound for BlueBall');
-        if(this.vibrato_check){
-            this.core.connect(this.vibrato);
+        console.log('Playing collision sound for YellowBall');
+        
+        // Play a chord of four notes
+        const notes = ["C4"];
+        this.core.triggerAttackRelease(notes, "8n");
+      
+        // Add vibrato effect if enabled
+        if (this.vibrato_check) {
+          this.core.connect(this.vibrato);
         }
-        // ...
-        this.core.triggerAttackRelease(["G4", "B4"], "10n");
-    }
+      }
+      
 
     checkCollisionWithBalls(balls) {
-        balls.forEach(ball => {
+        this.pool.forEach(ball => {
           if (ball !== this && this.isCollidingWith(ball)) {
             // Perform collision handling logic here
             // console.log('rewrote!');
@@ -61,13 +60,6 @@ class YellowBall extends Ball {
         });
       }
 
-    startAudioContext() {
-        Tone.start();
-    }
-    
-    closeAudioContext() {
-        Tone.context.close();
-    }
 
 }
 
