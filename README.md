@@ -1,3 +1,3 @@
-# bouncing-ball-musical
+# bouncing musical balls
  
 as name suggests
