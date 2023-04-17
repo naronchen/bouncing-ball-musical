@@ -1,6 +1,8 @@
 
 import Ball from './ball.js';
 import Pool from './pool.js';
+import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
+
 
 
 const pool = new Pool();

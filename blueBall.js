@@ -1,4 +1,5 @@
 import Ball from './ball.js';
+import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
 
 class BlueBall extends Ball {
     constructor(x, y, vx, vy, pool) {

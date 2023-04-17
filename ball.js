@@ -1,3 +1,5 @@
+import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
+
 class Ball {
     constructor(x, y,vx, vy, color, pool) {
         this.x = x;

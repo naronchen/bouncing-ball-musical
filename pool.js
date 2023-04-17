@@ -2,6 +2,8 @@ import Ball from './ball.js';
 import BlueBall from './blueBall.js';
 import OrangeBall from './orangeBall.js';
 import YellowBall from './ballYellow.js';
+import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
+
 class Pool{
     constructor(){
         this.balls = [];

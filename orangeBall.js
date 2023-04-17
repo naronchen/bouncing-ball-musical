@@ -1,4 +1,4 @@
-
+import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
 import Ball from './ball.js';
 
 class OrangeBall extends Ball {
