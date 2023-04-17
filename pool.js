@@ -27,7 +27,7 @@ class Pool{
           case 'orange':
             ball = new OrangeBall(x, y, velX, velY, this.balls);
             break;
-          case 'yellow':
+          case 'lightgreen':
             ball = new YellowBall(x, y, velX, velY, this.balls);
             break;
           // add cases for other colors here

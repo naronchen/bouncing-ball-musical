@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cssnano": "^6.0.0",
+    "parcel": "^2.3.1",
+    "postcss": "^8.4.22",
     "tone": "^14.7.77"
   },
   "description": ""

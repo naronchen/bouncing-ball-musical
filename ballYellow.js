@@ -37,11 +37,7 @@ class YellowBall extends Ball {
     playCollisonSound() {
         // Logic to play collision sound based on information in BlueBall class
         console.log('Playing collision sound for YellowBall');
-        
-        // Play a chord of four notes
-        const notes = ["C4"];
-        this.core.triggerAttackRelease(notes, "8n");
-      
+              
         // Add vibrato effect if enabled
         if (this.vibrato_check) {
           this.core.connect(this.vibrato);
@@ -54,7 +50,7 @@ class YellowBall extends Ball {
         this.core.triggerAttackRelease(["G4", "B4"], "10n");
     }
 
-    checkCollisionWithBalls(balls) {
+    checkCollisionWithBalls() {
         this.pool.forEach(ball => {
           if (ball !== this && this.isCollidingWith(ball)) {
             // Perform collision handling logic here

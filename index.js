@@ -21,7 +21,7 @@ document.body.appendChild(addBallButton);
 
 
 const colorSelect = document.createElement('select');
-const colors = ['blue', 'orange', 'yellow'];
+const colors = ['blue', 'orange', 'lightgreen'];
 colors.forEach(color => {
   const option = document.createElement('option');
   option.value = color;
