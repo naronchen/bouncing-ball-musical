@@ -19,7 +19,7 @@ class Pool{
         const y = Math.floor(Math.random() * (window.innerHeight - 2* min + 1) + min);
         const velX = Math.random() + 0.5;
         const velY = Math.random() + 0.5;
-        console.log("x", x, "y", y, "velX", velX, "velY", velY)
+        // console.log("x", x, "y", y, "velX", velX, "velY", velY)
         
         let ball;
         switch (color) {
