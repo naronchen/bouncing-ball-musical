@@ -8,19 +8,13 @@ import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
 const pool = new Pool();
 
 
-const startAudioContextButton = document.createElement('button');
-startAudioContextButton.textContent = 'Start';
-document.body.appendChild(startAudioContextButton);
-startAudioContextButton.addEventListener('click', () => {
-  Tone.start();
-});
+const buttonContainer = document.createElement('div');
+buttonContainer.className = 'button-container';
 
 const addBallButton = document.createElement('button');
 addBallButton.textContent = 'Add Ball';
-document.body.appendChild(addBallButton);
-
-// Add class names to the buttons
-
+addBallButton.className = 'btn';
+buttonContainer.appendChild(addBallButton);
 
 const colorSelect = document.createElement('select');
 const colors = ['blue', 'orange', 'lightgreen'];
@@ -30,8 +24,14 @@ colors.forEach(color => {
   option.text = color;
   colorSelect.appendChild(option);
 });
-document.body.appendChild(colorSelect);
+buttonContainer.appendChild(colorSelect);
 
+const clearButton = document.createElement('button');
+clearButton.textContent = 'Clear';
+clearButton.className = 'btn';
+buttonContainer.appendChild(clearButton);
+
+document.body.appendChild(buttonContainer);
 
 addBallButton.addEventListener('click', () => {
   const color = colorSelect.value;
@@ -39,19 +39,9 @@ addBallButton.addEventListener('click', () => {
   pool.addBall(color);
 });
 
-
-const clearbtn = document.createElement('button');
-clearbtn.textContent = 'Clear';
-document.body.appendChild(clearbtn);
-
-clearbtn.addEventListener('click', () => {
+clearButton.addEventListener('click', () => {
   pool.clear();
 });
-
-startAudioContextButton.className = 'btn';
-addBallButton.className = 'btn';
-clearbtn.className = 'btn';
-
 
 
 
