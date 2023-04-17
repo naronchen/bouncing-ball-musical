@@ -9,10 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "cssnano": "^6.0.0",
-    "parcel": "^2.3.1",
-    "postcss": "^8.4.22",
+  "dependencies": {
     "tone": "^14.7.77"
   },
   "description": ""
