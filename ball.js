@@ -25,7 +25,9 @@ class Ball {
           frequency: 8,
           decay: 1
         }).toDestination();
-    }
+        
+        this.filterFrequency = 1000;
+     }
     
     color(){
         return this.color;
@@ -33,6 +35,7 @@ class Ball {
     width(){
         return parseInt(this.ballElement.style.width, 10);
     }
+
 
     add_to_pool(ball){
       this.pool.push(ball);

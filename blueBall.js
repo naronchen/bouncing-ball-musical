@@ -49,6 +49,9 @@ class BlueBall extends Ball {
             this.core.set(this.patch);
         }
 
+        console.log('this.patch.filter.frequency: ', this.patch.filter.frequency);
+
+        
         this.core.triggerAttackRelease(["C4"], "8n");
 
 
@@ -62,6 +65,12 @@ class BlueBall extends Ball {
                 this.playCollisonSound();
             }
         });
+    }
+
+    set_filter(slidervalue, filtertype){
+        this.patch.filter.frequency = slidervalue;
+        this.patch.filter.type = filtertype;
+        this.core.set(this.patch);
     }
 
 }

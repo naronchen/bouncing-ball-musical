@@ -65,14 +65,63 @@ container.appendChild(checkbox);
 container.appendChild(label);
 
 checkbox.addEventListener('click', () => {
-  orangeballs.forEach(ball => {
-    ball.set_vibrato(checkbox.checked)
-  }),
-  blueballs.forEach(ball => {
-    ball.set_vibrato(checkbox.checked)
-  }),
-  yellowballs.forEach(ball => {
-    ball.set_vibrato(checkbox.checked)
+  pool.set_vibrato(checkbox.checked);
+});
+
+// create another checkbox element
+const checkbox2 = document.createElement('input');
+checkbox2.type = 'checkbox';
+const label2 = document.createElement('label');
+label2.textContent = 'switch filter';
+const container2 = document.querySelector('#myCheckboxContainer2');
+container2.appendChild(checkbox2);
+container2.appendChild(label2);
+
+let filterType = 'highpass'
+
+checkbox2.addEventListener('click', () => {
+  if (filterType === 'highpass') {
+    filterType = 'lowpass'
+  } else {
+    filterType = 'highpass'
   }
-  );
+  document.querySelector("#filter-type").textContent = filterType;
+});
+
+
+const sliderContainer = document.querySelector(".slider-container");
+const sliderTrack = document.querySelector(".slider-track");
+const sliderThumb = document.querySelector(".slider-thumb");
+const sliderValue = document.querySelector("#slider-value");
+
+
+
+let isDragging = false;
+
+sliderThumb.addEventListener("mousedown", () => {
+  isDragging = true;
+});
+
+sliderContainer.addEventListener("mouseup", () => {
+  isDragging = false;
+});
+
+sliderContainer.addEventListener("mousemove", (event) => {
+  if (!isDragging) return;
+  
+  let thumbPosition = event.clientX - sliderContainer.getBoundingClientRect().left;
+  
+  if (thumbPosition < 0) thumbPosition = 0;
+  if (thumbPosition > sliderContainer.offsetWidth) thumbPosition = sliderContainer.offsetWidth;
+  
+  sliderTrack.style.width = `${thumbPosition}px`;
+  sliderThumb.style.left = `${thumbPosition - (sliderThumb.offsetWidth / 2)}px`;
+  
+  // Calculate the value of the slider based on the position of the thumb
+  let sliderValue = Math.round((thumbPosition / sliderContainer.offsetWidth) * 100) * 4.4;
+
+  pool.setFilter(sliderValue, filterType)
+  // document.querySelector(".slider-text").textContent = filterType + " filter: ";
+  // Update the text element with the slider value
+  document.querySelector("#slider-value").textContent = `filter value: ${sliderValue}`;
 });

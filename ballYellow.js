@@ -63,6 +63,13 @@ class YellowBall extends Ball {
         });
       }
 
+    set_filter(slidervalue, filtertype){
+        this.patch.filter.frequency = slidervalue;
+        this.patch.filter.type = filtertype;
+        this.core.set(this.patch);
+    }
+    
+
 
 }
 

@@ -1,37 +1,76 @@
+/* #ball {
+  width: 30px;
+  height: 30px;
+  border-radius: 25px;
+  background-color: ;
+  position: absolute;
+  top: 0;
+  left: 0;
+} */
+
+.slider-container {
+  width: 300px;
+  height: 10px;
+  background-color: #ccc;
+  position: relative;
+}
+
+.slider-track {
+  width: 0;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+}
+
+.slider-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid black;
+  position: absolute;
+  top: -5px;
+  left: -10px;
+}
+
+#slider-value {
+  font-weight: bold;
+}
+
 /* CSS for start audio context button */
 .btn {
-  background-color: #333;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  margin: 0 10px 10px 0;
-  cursor: pointer;
+background-color: #333;
+color: #fff;
+padding: 10px;
+border-radius: 5px;
+margin: 0 10px 10px 0;
+cursor: pointer;
 }
 
 .btn:hover{
-  background-color: #555;
+background-color: #555;
 }
 
 /* CSS for color select dropdown */
 select {
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 5px;
-  margin-right: 10px;
+padding: 5px;
+font-size: 16px;
+border-radius: 5px;
+margin-right: 10px;
 }
 
 /* CSS for checkbox container */
 #myCheckboxContainer {
-  margin: 10px 0;
+margin: 10px 0;
 }
 
 /* CSS for checkbox label */
 label {
-  margin-left: 5px;
+margin-left: 5px;
 }
 
 /* CSS for checkbox */
 input[type="checkbox"] {
-  transform: scale(1.5);
-  margin-right: 5px;
+transform: scale(1.5);
+margin-right: 5px;
 }

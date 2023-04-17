@@ -15,11 +15,11 @@ class Pool{
 
     addBall(color) {
         const min = 30;
-        const x = Math.floor(Math.random() * (window.innerWidth - min + 1) + min);
+        const x = Math.floor(Math.random() * (window.innerWidth - 2 * min + 1) + min);
         const y = Math.floor(Math.random() * (window.innerHeight - 2* min + 1) + min);
-        const velX = Math.random() + 0.5;
-        const velY = Math.random() + 0.5;
-        // console.log("x", x, "y", y, "velX", velX, "velY", velY)
+        const velX = Math.random()*2 + 0.5;
+        const velY = Math.random()*2 + 0.5;
+        console.log("x", x, "y", y, "velX", velX, "velY", velY)
         
         let ball;
         switch (color) {
@@ -48,6 +48,17 @@ class Pool{
         });
     }
 
+    set_vibrato(check){
+      this.balls.forEach(ball => {
+        ball.set_vibrato(check);
+      })
+    }
+
+    setFilter(sliderValue, filterType){
+      this.balls.forEach(ball => {
+        ball.set_filter(sliderValue, filterType)
+      });
+    }
 
     closeAudioContext(){
         // Tone.context.close();
