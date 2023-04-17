@@ -36,7 +36,7 @@ class Pool{
           default:
             ball = new Ball(x, y, velX, velY, color, this.balls);
         }
-        console.log("hi")
+        // console.log("hi")
         this.updatePool(ball);
         this.balls.push(ball);
         ball.startAnimation();

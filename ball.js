@@ -39,7 +39,7 @@ class Ball {
     }
 
     stopAnimation() {
-      console.log("hello")
+      // console.log("hello")
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
     }

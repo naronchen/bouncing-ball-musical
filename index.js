@@ -4,7 +4,7 @@ import Pool from './pool.js';
 import * as Tone from 'https://cdn.skypack.dev/tone@14.7.77';
 
 
-console.warn = function () {};
+// console.warn = function () {};
 const pool = new Pool();
 
 
