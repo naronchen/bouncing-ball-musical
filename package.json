@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "tone": "^14.7.77"
   },
   "description": ""
 }
